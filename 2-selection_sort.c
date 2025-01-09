@@ -1,6 +1,12 @@
 #include "sort.h"
 #include <stdio.h>
 
+/**
+ * selection_sort - Sorts an array by finding the smallest possible value for
+ * each position and switching it with the current value each time.
+ * @array: Pointer to the array to sort,
+ * @size: Size of the array.
+ */
 void selection_sort(int *array, size_t size)
 {
 	int min = 0;
