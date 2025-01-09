@@ -3,7 +3,7 @@
 
 void quick_sort(int *array, size_t size)
 {
-	sort(array, 0, (int)size - 1);
+	sort(array, 0, (int)size - 1, size);
 }
 
 void swap(int *a, int* b)
@@ -13,20 +13,20 @@ void swap(int *a, int* b)
 	*b = temp;
 }
 
-void sort(int *array, int low, int high)
+void sort(int *array, int low, int high, size_t size)
 {
 	int p_index;
 
 	if (low < high)
 	{
-		p_index = partition(array, low, high);
+		p_index = partition(array, low, high, size);
 
-		sort(array, low, p_index - 1);
-		sort(array, p_index + 1, high);
+		sort(array, low, p_index - 1, size);
+		sort(array, p_index + 1, high, size);
 	}
 }
 
-int partition(int *array, int low, int high)
+int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
 	int i = (low - 1);
@@ -37,10 +37,17 @@ int partition(int *array, int low, int high)
 		if (array[j] <= pivot)
 		{
 			i++;
-			swap(&array[i], &array[j]);
+			if (i != j)
+			{
+				swap(&array[i], &array[j]);
+				print_array(array, size);
+			}
 		}
 	}
-	swap(&array[i + 1], &array[high]);
-	print_array(array, 10);
+	if (i + 1 != high)
+	{
+		swap(&array[i + 1], &array[high]);
+		print_array(array, size);
+	}
 	return (i + 1);
 }
