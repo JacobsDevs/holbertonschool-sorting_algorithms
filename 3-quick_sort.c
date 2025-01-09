@@ -1,17 +1,38 @@
 #include "sort.h"
 #include <stdio.h>
 
+/**
+ * quick_sort - entry point.
+ * @array: Pointer to the array to sort.
+ * @size: Size of the array.
+ */
+
 void quick_sort(int *array, size_t size)
 {
 	sort(array, 0, (int)size - 1, size);
 }
 
-void swap(int *a, int* b)
+/**
+ * swap - swaps the data in a & b
+ * @a: Address to the element a
+ * @b: Address to the element b
+ */
+
+void swap(int *a, int *b)
 {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
 }
+
+/**
+ * sort - Recursvely sorts through the array calling partition
+ * at each approporiate step.
+ * @array: Pointer to the array.
+ * @low: Index of the low value.
+ * @high: Index of the high value.
+ * @size: Full size of the array
+ */
 
 void sort(int *array, int low, int high, size_t size)
 {
@@ -26,6 +47,15 @@ void sort(int *array, int low, int high, size_t size)
 	}
 }
 
+/**
+ * partition - Partitions the array with values low on the left, high right
+ * @array: Pointer to the array to sort.
+ * @low: Index to the low point.
+ * @high: Index to the high point.
+ * @size: Full size of the array.
+ *
+ * Return: The index the pivot is at
+ */
 int partition(int *array, int low, int high, size_t size)
 {
 	int pivot = array[high];
